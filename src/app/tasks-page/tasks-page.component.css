@@ -25,16 +25,6 @@ input:focus
     outline: none;
 }
 
-.new-task-footer
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-top: solid;
-    border-width: 0.5px;
-    border-color: rgb(230, 230, 230);
-    padding: 10px 20px 10px 20px;
-}
 
 .card-container
 {    
@@ -44,9 +34,4 @@ input:focus
     margin: 20px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 2px 1px;
-}
-
-.left-container img
-{
-    margin: 0px 10px 0px 10px
 }

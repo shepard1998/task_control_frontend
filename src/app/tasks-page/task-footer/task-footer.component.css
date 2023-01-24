@@ -1,0 +1,16 @@
+.new-task-footer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: solid;
+    border-width: 0.5px;
+    border-color: rgb(230, 230, 230);
+    padding: 10px 20px 10px 20px;
+}
+
+
+.left-container img
+{
+    margin: 0px 10px 0px 10px
+}
