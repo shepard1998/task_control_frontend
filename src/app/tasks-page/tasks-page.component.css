@@ -7,13 +7,46 @@
 {
     display: flex;
     flex-direction: row;
+    padding: 20px 20px 25px 20px;
 }
 
 
-.new-task p
+.new-task input
 {
     font-family: 'regular_font';
     margin-left: 10px;
     font-size: 16px;
-    color: rgb(138, 148, 166);
+    color: rgb(83, 90, 102);
+    border: none;
+}
+
+input:focus
+{
+    outline: none;
+}
+
+.new-task-footer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: solid;
+    border-width: 0.5px;
+    border-color: rgb(230, 230, 230);
+    padding: 10px 20px 10px 20px;
+}
+
+.card-container
+{    
+    border: solid;
+    border-width: 0.5px;
+    border-color: rgb(230, 230, 230);
+    margin: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 2px 1px;
+}
+
+.left-container img
+{
+    margin: 0px 10px 0px 10px
 }
