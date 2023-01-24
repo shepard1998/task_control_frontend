@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'regular_font';
+    src: url('../../assets/fonts/roboto/Roboto-Regular.ttf');
+  }
+
+.new-task
+{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.new-task p
+{
+    font-family: 'regular_font';
+    margin-left: 10px;
+    font-size: 16px;
+    color: rgb(138, 148, 166);
+}
