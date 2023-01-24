@@ -1,9 +1,12 @@
-<div class="card-container">
+<div id="card" class="new-task-container">
     <div class="new-task">
         <img src="../../assets/icons/plus-square.svg">
-        <input type="text" placeholder="Type to add new task">
+        <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (focusout)="onFocusOutEvent()">
     </div>
-    <app-task-footer></app-task-footer>
+    <ng-container *ngIf="showDecoration">
+        <app-task-footer></app-task-footer>
+    </ng-container>    
 </div>
+
 
 
