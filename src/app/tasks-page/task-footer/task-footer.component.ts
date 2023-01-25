@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-task-footer',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TaskFooterComponent {
 
+  @Output() messageEvent = new EventEmitter();
+
+  addTask(): void{ this.messageEvent.emit(); }
 }

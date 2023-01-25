@@ -1,12 +1,22 @@
 <div id="card" class="new-task-container">
     <div class="new-task">
-        <img src="../../assets/icons/plus-square.svg">
-        <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (focusout)="onFocusOutEvent()">
+        <form [formGroup]="newTaskForm">
+            <img src="../../assets/icons/plus-square.svg">
+        <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (focusout)="onFocusOutEvent()" formControlName="description">
+        </form>
+        
     </div>
     <ng-container *ngIf="showDecoration">
-        <app-task-footer></app-task-footer>
+        <app-task-footer (messageEvent)="receiveMessage()"></app-task-footer>
     </ng-container>    
 </div>
-
+<div class="task-list">
+    <ul>
+            <li *ngFor="let task of tasks">
+                <input type="checkbox">
+                <span>{{ task.description }}</span>
+            </li>
+    </ul>
+</div>
 
 

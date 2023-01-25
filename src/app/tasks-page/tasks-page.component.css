@@ -40,3 +40,21 @@ input:focus
 {
     margin: 20px;
 }
+
+.task-list ul
+{
+    font-family: 'regular_font';
+    list-style-type: none;
+}
+
+.task-list span
+{
+    margin-left: 10px;
+    color: rgb(83, 90, 102);   
+}
+
+.task-list input
+{
+    height: 18px;
+    width: 18px;
+}
