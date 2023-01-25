@@ -39,11 +39,12 @@ export class TasksPageComponent implements OnInit{
      card?.classList.add('card-container');
   }
 
-  public onFocusOutEvent(): void
+  public cancelTask(): void
   {
-    //this.showDecoration = false;
-    //const card = document.getElementById('card');
-    //card?.classList.remove('card-container');
+    this.showDecoration = false;
+    const card = document.getElementById('card');
+    card?.classList.remove('card-container');
+    this.descriptionControl.setValue('');
    }
 
    public receiveMessage() {

@@ -8,6 +8,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class TaskFooterComponent {
 
   @Output() messageEvent = new EventEmitter();
+  @Output() cancelEvent = new EventEmitter();
 
-  addTask(): void{ this.messageEvent.emit(); }
+  public addTask(): void{ this.messageEvent.emit(); };
+
+  public cancelTask(): void { this.cancelEvent.emit(); };
 }
