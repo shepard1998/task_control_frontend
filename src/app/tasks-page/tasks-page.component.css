@@ -5,11 +5,14 @@
 
 .new-task
 {
-    display: flex;
-    flex-direction: row;
     padding: 20px 20px 25px 20px;
 }
 
+.new-task form
+{
+    display: flex;
+    flex-direction: row;
+}
 
 .new-task input
 {
@@ -45,6 +48,14 @@ input:focus
 {
     font-family: 'regular_font';
     list-style-type: none;
+}
+
+.task-list li
+{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    align-items: center;
 }
 
 .task-list span
