@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { TasksPageComponent } from './tasks-page/tasks-page.component';
 import { TaskFooterComponent } from './tasks-page/task-footer/task-footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextColorDirective } from './directives/text-color.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksPageComponent,
-    TaskFooterComponent
+    TaskFooterComponent,
+    TextColorDirective
   ],
   imports: [
     BrowserModule,

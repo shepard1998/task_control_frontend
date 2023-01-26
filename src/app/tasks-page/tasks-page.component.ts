@@ -14,6 +14,7 @@ export class TasksPageComponent implements OnInit{
  
   showDecoration!: boolean;
   tasks?: Task[];
+  tags?: String[] = [];
 
   newTaskForm = new FormGroup({ description: new FormControl('', [Validators.required]) });
   
@@ -53,6 +54,26 @@ export class TasksPageComponent implements OnInit{
     (
       data => this.tasks?.push(data)
     );
+  }
+
+
+  public onSpaceKeyPress() {
+    console.log(this.descriptionControl.value)
+    this.tags?.push(this.descriptionControl.value);
+    this.descriptionControl.setValue('');
+  }
+
+  public typeOfTag(tag: String): String
+  {
+    console.log("Tag in function: " + tag);
+    let type: String = "";
+
+    if (tag == "A") { type = "TYPE.plain" }
+    if (tag == "@") { type = "TYPE.contact" }
+    if (tag == "www") { type = "TYPE.link" }
+    if (tag == "gmail") { type = "TYPE.email" }
+
+    return type;
   }
 
 }

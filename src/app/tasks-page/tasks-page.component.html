@@ -2,7 +2,15 @@
     <div class="new-task">
         <form [formGroup]="newTaskForm">
             <img src="../../assets/icons/plus-square.svg">
-            <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" formControlName="description">
+            <ul>
+                <li *ngFor="let tag of tags">
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.plain'" appTextColor="black">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.contact'" appTextColor="green">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.link'" appTextColor="blue">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.email'" appTextColor="yellow">{{ tag }}</span>
+                </li>
+            </ul>
+            <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (keydown.Space)="onSpaceKeyPress()" formControlName="description">
         </form>
         
     </div>
