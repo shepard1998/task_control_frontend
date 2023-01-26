@@ -14,7 +14,7 @@ export class TasksPageComponent implements OnInit{
  
   showDecoration!: boolean;
   tasks?: Task[];
-  tags?: String[] = [];
+  tags?: string[] = [];
 
   newTaskForm = new FormGroup({ description: new FormControl('', [Validators.required]) });
   
@@ -61,17 +61,18 @@ export class TasksPageComponent implements OnInit{
     console.log(this.descriptionControl.value)
     this.tags?.push(this.descriptionControl.value);
     this.descriptionControl.setValue('');
+
   }
 
-  public typeOfTag(tag: String): String
+  public typeOfTag(tag: string): string
   {
-    console.log("Tag in function: " + tag);
-    let type: String = "";
+    const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
+    let type: string = "TYPE.plain";
 
-    if (tag == "A") { type = "TYPE.plain" }
-    if (tag == "@") { type = "TYPE.contact" }
-    if (tag == "www") { type = "TYPE.link" }
-    if (tag == "gmail") { type = "TYPE.email" }
+    if (tag.startsWith("@")) { type = "TYPE.contact" }
+    if (tag.startsWith("www.") && tag.endsWith(".com")) { type = "TYPE.link" }    
+    if (regexExp.test(tag)) { type = "TYPE.email" }
+    if (tag.startsWith("#")) { type = "TYPE.hashtag" }
 
     return type;
   }
