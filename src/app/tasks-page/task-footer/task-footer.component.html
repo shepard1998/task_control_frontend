@@ -1,12 +1,13 @@
 <div class="new-task-footer">
     <div class="left-container">
-        <img src="../../assets/icons32px/maximize-2.svg">
-        <img src="../../assets/icons32px/calendar.svg">
-        <img src="../../assets/icons32px/message-circle.svg">
-        <img src="../../assets/icons32px/sun.svg">
-        <img src="../../assets/icons32px/circle.svg">
-        <img src="../../assets/icons32px/trash-2.svg">
+        <div class="button-container"><img src="../../assets/icons24Grey/maximize-2.svg"><span>Open</span></div>
+        <div class="button-container"><img src="../../assets/icons24Grey/calendar.svg"><span>Today</span></div>
+        <div class="button-container"><img src="../../assets/icons24Grey/unlock.svg"><span>Public</span></div>
+        <div class="button-container" class="button-container"ton><img src="../../assets/icons24Grey/sun.svg"><span>Normal</span></div>
+        <div class="button-container"><img src="../../assets/icons24Grey/circle.svg"><span>Estimation</span></div>
+        <div class="button-container"><img src="../../assets/icons24Grey/trash-2.svg"><span>Delete</span></div>   
     </div>
+
     <div class="rightcontainer">
         <img (click)="cancelTask()" src="../../assets/icons32px/x.svg">
         <img (click)="addTask()" src="../../assets/icons32px/plus.svg">

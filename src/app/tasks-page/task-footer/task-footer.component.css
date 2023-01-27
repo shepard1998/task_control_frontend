@@ -1,5 +1,13 @@
+@font-face {
+    font-family: 'regular_font';
+    src: url('../../../assets/fonts/roboto/Roboto-Regular.ttf');
+  }
+
 .new-task-footer
 {
+    font-family: 'regular_font';
+    color: lightgray;
+    font-size: 12px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -9,13 +17,33 @@
     padding: 10px 20px 10px 20px;
 }
 
+.left-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.new-task-footer .button-container
+{
+    display: flex;
+    align-items: center;
+    background: none; 
+    padding: 5px 20px 5px 15px;
+    margin-right: 10px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    
+}
+
+
+
+.button-container:hover
+{
+    cursor: pointer;
+}
 
 img
 {
-    margin: 0px 10px 0px 10px
-}
-
-img:hover
-{
-    cursor: pointer;
+    margin-right: 10px;
 }
