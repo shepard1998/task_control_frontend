@@ -32,8 +32,7 @@
     margin-right: 10px;
     border: solid;
     border-width: 1px;
-    border-radius: 3px;
-    
+    border-radius: 3px;    
 }
 
 
@@ -47,3 +46,16 @@ img
 {
     margin-right: 10px;
 }
+
+@media screen and (max-width: 1230px) {
+    /* These settings add to or override those that come before */
+    .new-task-footer .button-container
+    {
+        border: none;
+        padding: 0px;
+    }
+    .new-task-footer .button-container span 
+    {
+        display: none;
+    }
+  }
