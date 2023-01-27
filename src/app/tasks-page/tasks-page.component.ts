@@ -13,8 +13,8 @@ import { Observable } from 'rxjs';
 export class TasksPageComponent implements OnInit{
  
   showDecoration!: boolean;
-  tasks?: Task[];
-  tags?: string[] = [];
+  tasks: Task[] = [];
+  tags: string[] = [];
 
   newTaskForm = new FormGroup({ description: new FormControl('', [Validators.required]) });
   
@@ -30,7 +30,24 @@ export class TasksPageComponent implements OnInit{
 
   public fillTasks(): void
   {
-    this.service.getTasks().subscribe(tasks => {this.tasks = tasks});
+    this.service.getTasks().subscribe(tasks =>
+       {
+        this.tasks = tasks
+        for(var i = 0; i < this.tasks.length; i++)
+        {
+          console.log(this.tasks[i]);
+          this.getTaskTags(this.tasks[i]);
+          console.log(this.tasks[i]);
+        }
+      });
+  }
+
+  public getTaskTags(task: Task): void
+  {
+    this.service.getTaskTags(task.id).subscribe
+    (
+      data => task.tags = data
+    )
   }
   
   public onFocusEvent(): void
@@ -48,33 +65,59 @@ export class TasksPageComponent implements OnInit{
     this.descriptionControl.setValue('');
    }
 
-   public receiveMessage() {
-    const newTask: Task = { description: this.descriptionControl.value };
+   public receiveMessage()
+  {
+    const newTask: Task = { };
     this.service.addNewTask(newTask).subscribe
     (
-      data => this.tasks?.push(data)
+      taskData =>
+      {
+        for (var i = 0; i < this.tags.length; i++)
+        {
+          this.service.addNewTag({ text: this.tags[i] }).subscribe
+          (
+            tagData =>
+            {
+              console.log(tagData.id);
+              this.service.assignTaskToTag(taskData.id, tagData.id).subscribe();
+              this.fillTasks();
+              this.tags = [];
+            }
+          )
+        }
+      }
     );
   }
 
 
   public onSpaceKeyPress() {
-    console.log(this.descriptionControl.value)
-    this.tags?.push(this.descriptionControl.value);
-    this.descriptionControl.setValue('');
-
+    
+    let value = this.descriptionControl.value.replace(/ /g, '').trim();
+    if (value != "")
+    {      
+      console.log(value);
+      
+      if(
+        this.tags.length > 0
+        &&
+        this.typeOfTag(this.tags[this.tags.length-1]) == "TYPE.plain"
+        &&
+        this.typeOfTag(value) == "TYPE.plain"
+      )
+      {
+        this.tags[this.tags.length-1] = this.tags[this.tags.length-1] + " " +   value;
+      }
+      else
+      {
+        this.tags.push(value);      
+      }
+      this.descriptionControl.reset();
+    }
   }
 
   public typeOfTag(tag: string): string
   {
-    const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
-    let type: string = "TYPE.plain";
-
-    if (tag.startsWith("@")) { type = "TYPE.contact" }
-    if (tag.startsWith("www.") && tag.endsWith(".com")) { type = "TYPE.link" }    
-    if (regexExp.test(tag)) { type = "TYPE.email" }
-    if (tag.startsWith("#")) { type = "TYPE.hashtag" }
-
-    return type;
+    return this.service.typeOfTag(tag);
   }
 
 }

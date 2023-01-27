@@ -11,7 +11,7 @@
                     <span *ngIf="typeOfTag(tag) == 'TYPE.email'" appTextColor="yellow">{{ tag }}</span>
                 </li>
             </ul>
-            <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (keydown.Space)="onSpaceKeyPress()" formControlName="description">
+            <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (keyup.Space)="onSpaceKeyPress()" formControlName="description">
         </form>
         
     </div>
@@ -24,7 +24,9 @@
     <ul>
             <li *ngFor="let task of tasks">
                 <input type="checkbox">
-                <span>{{ task.description }}</span>
+                <p *ngFor="let tag of task.tags">
+                    {{ tag.text }}
+                </p>
             </li>
     </ul>
 </div>
