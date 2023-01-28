@@ -42,4 +42,24 @@ export class TasksPageService
 
     return type;
   } 
+
+  public splitDescriptionInTags(tasks: Task[]): void
+  {
+    for(let i = 0; i < tasks.length; i++)
+    {
+      tasks[i].splittedDescription = tasks[i].description.split(" ");
+    }
+  }
+
+  public concatTags(tags: string[]): string
+  {
+    let concat = "";
+    
+    for(let i = 0; i < tags.length; i++)
+    {
+      concat += tags[i] + " ";
+    }
+    
+    return concat;
+  }
 }

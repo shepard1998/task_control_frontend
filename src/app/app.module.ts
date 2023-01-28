@@ -13,7 +13,7 @@ import { TextColorDirective } from './directives/text-color.directive';
     AppComponent,
     TasksPageComponent,
     TaskFooterComponent,
-    TextColorDirective
+    TextColorDirective,
   ],
   imports: [
     BrowserModule,

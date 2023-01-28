@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from '../dto/task';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TasksPageService } from './tasks-page.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tasks-page',
@@ -34,17 +33,10 @@ export class TasksPageComponent implements OnInit{
     this.service.getTasks().subscribe(tasks =>
        {
         this.tasks = tasks;
-        this.splitDescriptionInTags();
+        this.service.splitDescriptionInTags(tasks);
       });
   }
 
-  public splitDescriptionInTags(): void
-  {
-    for(let i = 0; i < this.tasks.length; i++)
-    {
-      this.tasks[i].splittedDescription = this.tasks[i].description.split(" ");
-    }
-  }
   
   public onFocusEvent(): void
   {
@@ -59,7 +51,7 @@ export class TasksPageComponent implements OnInit{
     this.showDecoration = false;
     const card = document.getElementById('card');
     card?.classList.remove('card-container');
-    this.descriptionControl.setValue('');
+    this.descriptionControl.reset();
   }
 
   public deleteTag(): void
@@ -71,9 +63,9 @@ export class TasksPageComponent implements OnInit{
     }
   }
 
-   public receiveMessage()
+   public addTask()
   {
-    let concatText = this.concatTags();
+    let concatText = this.service.concatTags(this.tags);
 
     if (this.descriptionControl.value != null){ concatText += this.descriptionControl.value };
 
@@ -89,18 +81,6 @@ export class TasksPageComponent implements OnInit{
        }
      );
     
-  }
-
-  public concatTags(): string
-  {
-    let concat = "";
-    
-    for(let i = 0; i < this.tags.length; i++)
-    {
-      concat += this.tags[i] + " ";
-    }
-    
-    return concat;
   }
 
   public onSpaceKeyPress() {

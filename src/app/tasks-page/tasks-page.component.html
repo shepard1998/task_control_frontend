@@ -16,7 +16,7 @@
         
     </div>
     <ng-container *ngIf="showDecoration">
-        <app-task-footer (messageEvent)="receiveMessage()" (cancelEvent)="cancelTask()"></app-task-footer>
+        <app-task-footer (messageEvent)="addTask()" (cancelEvent)="cancelTask()"></app-task-footer>
     </ng-container>    
 </div>
 
@@ -31,7 +31,7 @@
                     <span *ngIf="typeOfTag(tag) == 'TYPE.hashtag'" class="tag hashtag">{{ tag }}</span>
                     <span *ngIf="typeOfTag(tag) == 'TYPE.email'" class="tag email">{{ tag }}</span>
                 </div>
-            </li>
+            </li>   
     </ul>
 </div>
 
