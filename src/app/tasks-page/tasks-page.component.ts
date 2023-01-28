@@ -78,6 +78,7 @@ export class TasksPageComponent implements OnInit{
         this.fillTasks();
          this.tags = [];
          this.descriptionControl.reset();
+         this.placeholder = "Type to add a new task";
        }
      );
     

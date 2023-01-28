@@ -23,7 +23,7 @@
     flex-direction: row;
 }
 
-.new-task-footer .button-container
+.button-container
 {
     display: flex;
     align-items: center;
@@ -35,11 +35,39 @@
     border-radius: 3px;    
 }
 
-
-
 .button-container:hover
 {
     cursor: pointer;
+}
+
+.rightcontainer
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.rightcontainer .button-container
+{
+    padding: 7px 20px 7px 20px;
+}
+
+.rightcontainer img
+{
+    display: none;
+}
+
+.rightcontainer #cancel
+{
+    background-color: rgb(225, 227, 230);
+    color: black;
+    border: none;
+}
+
+.rightcontainer #ok
+{
+    background-color: rgb(30, 93, 187);
+    color: white;
+    border: none;
 }
 
 img
@@ -58,4 +86,8 @@ img
     {
         display: none;
     }
+
+    #cancel { display: none; }
+    #ok { display: none; }
+    .rightcontainer img { display: flex; }
   }

@@ -33,10 +33,12 @@ export class TasksPageService
     public typeOfTag(tag: string): string
   {
     const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
+    const expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+    const regexLink = new RegExp(expression);
     let type: string = "TYPE.plain";    
 
     if (tag.startsWith("@")) { type = "TYPE.contact" }
-    if (tag.startsWith("www.") && tag.endsWith(".com")) { type = "TYPE.link" }    
+    if (regexLink.test(tag)) { type = "TYPE.link" }    
     if (regexExp.test(tag)) { type = "TYPE.email" }
     if (tag.startsWith("#")) { type = "TYPE.hashtag" }
 
