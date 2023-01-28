@@ -24,7 +24,13 @@
     <ul>
             <li *ngFor="let task of tasks">
                 <input type="checkbox">
-                <p>{{ task.description }} </p>
+                <div *ngFor="let tag of task.splittedDescription">
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.plain'" appTextColor="black">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.contact'" appTextColor="green">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.link'" appTextColor="blue">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.hashtag'" appTextColor="red">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.email'" appTextColor="yellow">{{ tag }}</span>
+                </div>
             </li>
     </ul>
 </div>

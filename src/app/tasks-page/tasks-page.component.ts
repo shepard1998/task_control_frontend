@@ -32,10 +32,18 @@ export class TasksPageComponent implements OnInit{
   {
     this.service.getTasks().subscribe(tasks =>
        {
-        this.tasks = tasks
+        this.tasks = tasks;
+        this.splitDescriptionInTags();
       });
   }
 
+  public splitDescriptionInTags(): void
+  {
+    for(let i = 0; i < this.tasks.length; i++)
+    {
+      this.tasks[i].splittedDescription = this.tasks[i].description.split(" ");
+    }
+  }
   
   public onFocusEvent(): void
   {
@@ -61,6 +69,7 @@ export class TasksPageComponent implements OnInit{
       taskData =>
       {
         this.fillTasks();
+        this.tags = [];
       }
     );
   }
