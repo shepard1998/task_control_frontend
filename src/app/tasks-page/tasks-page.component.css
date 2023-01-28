@@ -85,6 +85,7 @@ input:focus
 .task-list span
 {
     margin-left: 5px;
+    font-size: 14px;
     color: rgb(83, 90, 102);   
 }
 
@@ -92,4 +93,39 @@ input:focus
 {
     height: 18px;
     width: 18px;
+}
+
+.task-list .tag
+{
+    border-radius: 10px;
+    padding: 2px 8px 2px 8px;
+}
+
+.task-list .contact
+{
+    background-color: rgb(129, 228, 174);
+    color: rgb(0, 146, 66);;
+}
+
+.task-list .link
+{
+    background-color: rgb(168, 242, 245);
+    color: rgb(6, 115, 119);;
+}
+
+.task-list .hashtag
+{
+    background-color: rgb(223, 199, 255);
+    color: rgb(120, 18, 253);;
+}
+
+.task-list .email
+{
+    background-color: rgb(250, 238, 171);
+    color: rgb(122, 104, 2);;
+}
+
+.task-list .tag:hover
+{
+    cursor: pointer;   
 }
