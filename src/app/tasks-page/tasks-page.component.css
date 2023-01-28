@@ -101,6 +101,26 @@ input:focus
     padding: 2px 8px 2px 8px;
 }
 
+.new-task .contact
+{
+    color: rgb(0, 146, 66);;
+}
+
+.new-task .link
+{
+    color: rgb(6, 115, 119);;
+}
+
+.new-task .hashtag
+{
+    color: rgb(120, 18, 253);;
+}
+
+.new-task .email
+{
+    color: rgb(122, 104, 2);;
+}
+
 .task-list .contact
 {
     background-color: rgb(129, 228, 174);

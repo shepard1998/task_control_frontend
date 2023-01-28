@@ -5,13 +5,13 @@
             <ul>
                 <li *ngFor="let tag of tags">
                     <span *ngIf="typeOfTag(tag) == 'TYPE.plain'" appTextColor="black">{{ tag }}</span>
-                    <span *ngIf="typeOfTag(tag) == 'TYPE.contact'" appTextColor="green">{{ tag }}</span>
-                    <span *ngIf="typeOfTag(tag) == 'TYPE.link'" appTextColor="blue">{{ tag }}</span>
-                    <span *ngIf="typeOfTag(tag) == 'TYPE.hashtag'" appTextColor="red">{{ tag }}</span>
-                    <span *ngIf="typeOfTag(tag) == 'TYPE.email'" appTextColor="yellow">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.contact'" class="tag contact">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.link'" class="tag link">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.hashtag'" class="tag hashtag">{{ tag }}</span>
+                    <span *ngIf="typeOfTag(tag) == 'TYPE.email'" class="tag email">{{ tag }}</span>
                 </li>
             </ul>
-            <input type="text" placeholder="Type to add new task" (focus)="onFocusEvent()" (keyup.Space)="onSpaceKeyPress()" formControlName="description">
+            <input id="input-task" type="text" placeholder="{{placeholder}}" (focus)="onFocusEvent()" (keyup.Space)="onSpaceKeyPress()" (keyup.Backspace)="deleteTag()" formControlName="description">
         </form>
         
     </div>

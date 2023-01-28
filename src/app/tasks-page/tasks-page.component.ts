@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class TasksPageComponent implements OnInit{
  
   showDecoration!: boolean;
+  placeholder: string = 'Type to add a new task';
   tasks: Task[] = [];
   tags: string[] = [];
 
@@ -49,6 +50,7 @@ export class TasksPageComponent implements OnInit{
   {
      this.showDecoration = true;
      const card = document.getElementById('card');
+     const input = document.getElementById('input-task');
      card?.classList.add('card-container');
   }
 
@@ -58,20 +60,35 @@ export class TasksPageComponent implements OnInit{
     const card = document.getElementById('card');
     card?.classList.remove('card-container');
     this.descriptionControl.setValue('');
-   }
+  }
+
+  public deleteTag(): void
+  {
+    if (this.tags.length > 0 && (this.descriptionControl.value == null || this.descriptionControl.value == ""))
+    {
+      this.tags.pop();
+      if (this.tags.length == 0) { this.placeholder = "Type to add a new task" }
+    }
+  }
 
    public receiveMessage()
   {
-    const newTask: Task = { description: this.concatTags() };
-    console.log(this.tags);
+    let concatText = this.concatTags();
+
+    if (this.descriptionControl.value != null){ concatText += this.descriptionControl.value };
+
+    const newTask: Task = { description: concatText };
+
     this.service.addNewTask(newTask).subscribe
     (
       taskData =>
       {
         this.fillTasks();
-        this.tags = [];
-      }
-    );
+         this.tags = [];
+         this.descriptionControl.reset();
+       }
+     );
+    
   }
 
   public concatTags(): string
@@ -91,20 +108,8 @@ export class TasksPageComponent implements OnInit{
     let value = this.descriptionControl.value.replace(/ /g, '').trim();
     if (value != "")
     {         
-      if(
-        this.tags.length > 0
-        &&
-        this.typeOfTag(this.tags[this.tags.length-1]) == "TYPE.plain"
-        &&
-        this.typeOfTag(value) == "TYPE.plain"
-      )
-      {
-        this.tags[this.tags.length-1] = this.tags[this.tags.length-1] + " " +   value;
-      }
-      else
-      {
-        this.tags.push(value);      
-      }
+      this.tags.push(value);
+      this.placeholder = "";  
       this.descriptionControl.reset();
     }
   }
