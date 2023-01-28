@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Task } from "../dto/task";
-import { Tag } from "../dto/tag";
 
 @Injectable ({
     providedIn: 'root'
@@ -24,30 +23,12 @@ export class TasksPageService
         return this.http.get(this.url + "task");
     }
 
-    public getTaskTags(taskId: any): Observable<any>
-    {
-        return this.http.put(this.url + "tag/task/" + taskId, "");
-    }
 
     public addNewTask(task: Task): Observable<any>
     {
         return this.http.post<Task>(this.getUrl() + "task", task);
     }
 
-    public addNewTag(tag: Tag): Observable<any>
-    {
-        return this.http.post<Tag>(this.url + "tag", tag);
-    }
-
-    public assignTaskToTag(idTask: any, idTag: any): Observable<any>
-    {
-        return this.http.put(this.url
-             + "tag/"
-             + idTag + "/"
-             + "task/"
-             + idTask, 
-             "");
-    }
 
     public typeOfTag(tag: string): string
   {

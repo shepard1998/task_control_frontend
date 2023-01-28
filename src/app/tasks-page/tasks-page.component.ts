@@ -33,22 +33,9 @@ export class TasksPageComponent implements OnInit{
     this.service.getTasks().subscribe(tasks =>
        {
         this.tasks = tasks
-        for(var i = 0; i < this.tasks.length; i++)
-        {
-          console.log(this.tasks[i]);
-          this.getTaskTags(this.tasks[i]);
-          console.log(this.tasks[i]);
-        }
       });
   }
 
-  public getTaskTags(task: Task): void
-  {
-    this.service.getTaskTags(task.id).subscribe
-    (
-      data => task.tags = data
-    )
-  }
   
   public onFocusEvent(): void
   {
@@ -67,36 +54,34 @@ export class TasksPageComponent implements OnInit{
 
    public receiveMessage()
   {
-    const newTask: Task = { };
+    const newTask: Task = { description: this.concatTags() };
+    console.log(this.tags);
     this.service.addNewTask(newTask).subscribe
     (
       taskData =>
       {
-        for (var i = 0; i < this.tags.length; i++)
-        {
-          this.service.addNewTag({ text: this.tags[i] }).subscribe
-          (
-            tagData =>
-            {
-              console.log(tagData.id);
-              this.service.assignTaskToTag(taskData.id, tagData.id).subscribe();
-              this.fillTasks();
-              this.tags = [];
-            }
-          )
-        }
+        this.fillTasks();
       }
     );
   }
 
+  public concatTags(): string
+  {
+    let concat = "";
+    
+    for(let i = 0; i < this.tags.length; i++)
+    {
+      concat += this.tags[i] + " ";
+    }
+    
+    return concat;
+  }
 
   public onSpaceKeyPress() {
     
     let value = this.descriptionControl.value.replace(/ /g, '').trim();
     if (value != "")
-    {      
-      console.log(value);
-      
+    {         
       if(
         this.tags.length > 0
         &&
